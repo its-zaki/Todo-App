@@ -1,26 +1,28 @@
 let input = document.querySelector("#user_input");
-let ul = document.querySelector("ul");
+let submit = document.querySelector("#submit")
+let ol = document.querySelector("ol");
 let arr = [];
-function todoapp() {
+function todoapp(e) {
+  e.preventDefault();
   if (input.value == "") {
     alert("Please enter a task");
   } else {
     arr.push(input.value);
     input.value = ''
-    ul.innerHTML = ""
+    ol.innerHTML = ""
     for (let i = 0; i<arr.length; i++) {
        const items = arr[i];
         //   console.log(items);
-      ul.innerHTML += `<li>${items}<li/> <button style="cursor:pointer;" onclick="Delete(${i})">Delete<button/> <button style="cursor:pointer;" onclick="edit_task(${i})">Edit<button/>`;
+      ol.innerHTML += `<div class="li-div"><li class="todo-li"> <input class="check" type="checkbox">&nbsp ${items}  </li> <button class="del"  onclick="Delete(${i})">Delete</button> &nbsp <button class="edit" onclick="edit_task(${i})">Edit</button></div><hr> `;
     }
   }
 }
 function render(){
-    ul.innerHTML = ""
+    ol.innerHTML = ""
     for (let i = 0; i < arr.length; i++) {
         items = arr[i];
         //   console.log(items);
-      ul.innerHTML += `<li>${items}<li/> <button style="cursor:pointer;" onclick="Delete(${i})">Delete<button/> <button style="cursor:pointer;" onclick="edit_task(${i})">Edit<button/>`;
+      ol.innerHTML += `<div class="li-div"><li class="todo-li"><input class="check" type="checkbox">&nbsp ${items} </li><button class="del" onclick="Delete(${i})">Delete</button> &nbsp<button class="edit" onclick="edit_task(${i})">Edit</button></div> <hr>`;
     }
 }
 function Delete(index){
@@ -30,9 +32,15 @@ function Delete(index){
 }
 function edit_task(index){
     const edited = prompt("Edit:" , arr[index]) 
-    if (edited !=="" )
-    arr[index] = edited
-    render();
+    if (edited !=="null"    ){
+      // arr[index] = items 
+      arr[index] = edited;
+      render();
+    
+    }
+    
+
+
 
 }
 
