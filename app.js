@@ -32,7 +32,7 @@ function Delete(index){
 }
 function edit_task(index){
     const edited = prompt("Edit:" , arr[index]) 
-    if (edited !=="null"    ){
+    if (edited !=="null"     ){
       // arr[index] = items 
       arr[index] = edited;
       render();
